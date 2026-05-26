@@ -1,648 +1,1097 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Legionbound Class Guide – How to Unlock Every Class</title>
-<meta name="description" content="Complete guide to unlocking every class in Legionbound. Starting classes, achievement unlocks, skill tree order, synergy loops and upgrade paths all explained.">
-<meta property="og:title" content="Legionbound Class Guide – Unlock Every Class">
-<meta property="og:description" content="Starting classes, achievement unlocks, optimal skill tree strategy, and full synergy loop reference for Legionbound.">
-<meta property="og:type" content="website">
-<style>
-:root {
-  --gold: #c9a84c; --gold-dim: #7a5c1e;
-  --bg: #09090f; --bg2: #0f0f1a; --bg3: #13131f;
-  --border: rgba(201,168,76,0.2);
-  --text: #e8d9b0; --text-dim: #8a7450;
-  --red: #c0392b; --blue: #2472a4;
-  --red-dim: rgba(192,57,43,0.12); --blue-dim: rgba(36,114,164,0.12);
-  --green: #27ae60; --green-dim: rgba(39,174,96,0.12);
-  --purple: #8e44ad; --purple-dim: rgba(142,68,173,0.12);
-  --orange: #e67e22; --orange-dim: rgba(230,126,34,0.12);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: Georgia, serif; line-height: 1.7; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Legionbound Class Guide – Unlock Every Class</title>
+  <meta name="description" content="Complete guide to unlocking every class in Legionbound. Starting classes, achievement unlocks, skill tree order, synergy loops and upgrade paths all explained." />
+  <meta property="og:title" content="Legionbound Class Guide – Unlock Every Class" />
+  <meta property="og:description" content="Starting classes, achievement unlocks, optimal skill tree strategy, and full synergy loop reference for Legionbound." />
+  <meta property="og:type" content="website" />
 
-nav {
-  background: rgba(9,9,15,0.97); border-bottom: 1px solid var(--border);
-  padding: 0 24px; position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between; height: 52px;
-}
-.nav-brand { font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
-.nav-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
-.nav-links a { font-size: 11px; color: var(--text-dim); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
-.nav-links a:hover { color: var(--gold); }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
-.hero {
-  text-align: center; padding: 72px 24px 56px; border-bottom: 1px solid var(--border);
-  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%);
-}
-.hero-eyebrow { font-size: 11px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
-.hero h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 700; color: var(--text); letter-spacing: 2px; margin-bottom: 8px; }
-.hero h1 span { color: var(--gold); }
-.hero-sub { font-size: 15px; color: var(--text-dim); max-width: 560px; margin: 0 auto 32px; }
-.hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.badge { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); }
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
-section { padding: 52px 0; border-bottom: 1px solid var(--border); }
-section:last-child { border-bottom: none; }
-.section-eyebrow { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-h2 { font-size: clamp(20px, 3.5vw, 30px); font-weight: 700; color: var(--text); margin-bottom: 14px; }
-h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-p { color: var(--text-dim); margin-bottom: 14px; }
-p:last-child { margin-bottom: 0; }
+    :root {
+      --bg:       #0f0f11;
+      --bg2:      #17171b;
+      --bg3:      #1e1e24;
+      --border:   #2a2a34;
+      --text:     #e8e8ec;
+      --muted:    #8888a0;
+      --accent:   #c9a84c;
+      --accent2:  #7c6ab8;
+      --heavy:    #5c9cf5;
+      --agile:    #5ecf8a;
+      --brutal:   #e05c5c;
+      --origin:   #c9a84c;
+      --radius:   8px;
+      --max-w:    860px;
+    }
 
-.callout {
-  background: var(--bg3); border: 1px solid var(--gold); border-left: 4px solid var(--gold);
-  border-radius: 8px; padding: 18px 22px; margin: 20px 0;
-}
-.callout-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-.callout p { color: var(--text); margin: 0; }
+    html { scroll-behavior: smooth; }
 
-/* STARTING CLASSES */
-.starter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
-.starter-card {
-  background: var(--bg3); border-radius: 10px; padding: 18px 16px; text-align: center;
-  border: 1px solid var(--border);
-}
-.starter-card.agile { border-color: rgba(192,57,43,0.4); background: var(--red-dim); }
-.starter-card.heavy { border-color: rgba(36,114,164,0.4); background: var(--blue-dim); }
-.starter-icon { font-size: 28px; margin-bottom: 8px; }
-.starter-name { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text); margin-bottom: 4px; }
-.starter-role { font-size: 11px; color: var(--text-dim); }
-.starter-card.agile .starter-name { color: #e87060; }
-.starter-card.heavy .starter-name { color: #60a8e8; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+    }
 
-/* UNLOCK METHOD TAGS */
-.tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
-.tag-start  { background: rgba(201,168,76,0.15);  border: 1px solid rgba(201,168,76,0.35);   color: var(--gold); }
-.tag-achiev { background: var(--green-dim);        border: 1px solid rgba(39,174,96,0.35);    color: #5dca8a; }
-.tag-easy   { background: var(--blue-dim);         border: 1px solid rgba(36,114,164,0.35);   color: #60a8e8; }
-.tag-medium { background: var(--purple-dim);       border: 1px solid rgba(142,68,173,0.35);   color: #c390e8; }
-.tag-agile  { background: var(--red-dim);          border: 1px solid rgba(192,57,43,0.35);    color: #e8a090; }
-.tag-heavy  { background: var(--blue-dim);         border: 1px solid rgba(36,114,164,0.35);   color: #90bce8; }
-.tag-origin { background: rgba(201,168,76,0.12);   border: 1px solid rgba(201,168,76,0.3);    color: var(--gold); }
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,17,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .03em;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      margin-left: auto;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-tip {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: color .15s, border-color .15s;
+    }
+    .nav-tip:hover { color: var(--accent); border-color: var(--accent); }
 
-/* ACHIEVEMENT UNLOCKS */
-.achiev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin: 20px 0; }
-.achiev-pill {
-  background: var(--green-dim); border: 1px solid rgba(39,174,96,0.3);
-  border-radius: 8px; padding: 10px 12px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-  color: #5dca8a;
-}
-.achiev-pill span { display: block; font-size: 10px; font-weight: 400; color: var(--text-dim); margin-top: 2px; text-transform: none; letter-spacing: 0; }
+    /* ── MAIN ── */
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
 
-/* SKILL TREE */
-.skill-tiers { display: flex; flex-direction: column; gap: 28px; margin-top: 24px; }
-.skill-tier { border-radius: 10px; overflow: hidden; border: 1.5px solid; }
-.skill-tier.easy   { border-color: rgba(36,114,164,0.4); }
-.skill-tier.medium { border-color: rgba(142,68,173,0.4); }
-.tier-header { padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
-.skill-tier.easy   .tier-header { background: rgba(36,114,164,0.12); }
-.skill-tier.medium .tier-header { background: rgba(142,68,173,0.12); }
-.tier-badge { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
-.easy-badge   { background: rgba(36,114,164,0.2);  border: 1px solid rgba(36,114,164,0.4);  color: #60a8e8; }
-.medium-badge { background: rgba(142,68,173,0.2);  border: 1px solid rgba(142,68,173,0.4);  color: #c390e8; }
-.tier-desc { font-size: 12px; color: var(--text-dim); }
-.skill-steps { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 0; }
-.skill-step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid rgba(201,168,76,0.07); }
-.skill-step:last-child { border-bottom: none; }
-.step-num {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700;
-}
-.easy   .step-num { background: rgba(36,114,164,0.2);  border: 1px solid rgba(36,114,164,0.4);  color: #60a8e8; }
-.medium .step-num { background: rgba(142,68,173,0.2);  border: 1px solid rgba(142,68,173,0.4);  color: #c390e8; }
-.step-body { flex: 1; }
-.step-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-.step-chain { font-size: 11px; color: var(--gold); margin-bottom: 3px; letter-spacing: 0.3px; }
-.step-reason { font-size: 12px; color: var(--text-dim); line-height: 1.55; }
+    /* ── HERO ── */
+    .hero {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--border);
+    }
+    h1 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .hero-sub {
+      color: var(--muted);
+      max-width: 540px;
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+    .stat-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .stat-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 13px;
+    }
+    .stat-badge strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .stat-badge span {
+      color: var(--muted);
+    }
+    .stat-badge .icon {
+      font-size: 14px;
+    }
 
-/* LOOP CARDS */
-.loop-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
-@media(max-width:600px){ .loop-cards { grid-template-columns: 1fr; } }
-.loop-card { border-radius: 10px; padding: 18px; }
-.loop-card.agile { background: var(--red-dim);  border: 1.5px solid rgba(192,57,43,0.4); }
-.loop-card.heavy { background: var(--blue-dim); border: 1.5px solid rgba(36,114,164,0.4); }
-.loop-card.brutal { background: rgba(230,126,34,0.12); border: 1.5px solid rgba(230,126,34,0.4); }
-.loop-card h3 { margin-bottom: 10px; }
-.loop-card.agile h3 { color: #e87060; }
-.loop-card.heavy h3 { color: #60a8e8; }
-.loop-card.brutal h3 { color: #e8b060; }
-.class-chain { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
-.cls-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 12px; white-space: nowrap; }
-.agile .cls-pill { background: rgba(192,57,43,0.18); border: 1px solid rgba(192,57,43,0.4); color: #e8a090; }
-.heavy .cls-pill { background: rgba(36,114,164,0.18); border: 1px solid rgba(36,114,164,0.4); color: #90bce8; }
-.brutal .cls-pill { background: rgba(230,126,34,0.18); border: 1px solid rgba(230,126,34,0.4); color: #f0c080; }
-.chain-arrow { color: var(--text-dim); font-size: 10px; opacity: 0.6; }
+    /* ── SECTIONS ── */
+    section {
+      padding: 56px 0 0;
+    }
+    .section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    p:last-child { margin-bottom: 0; }
 
-/* UPGRADE TABLE */
-.upgrade-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
-.upgrade-table th { text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); padding: 10px 14px; border-bottom: 1px solid var(--border); }
-.upgrade-table td { padding: 9px 14px; border-bottom: 1px solid rgba(201,168,76,0.07); color: var(--text-dim); vertical-align: middle; }
-.upgrade-table tr:hover td { background: rgba(201,168,76,0.03); }
-.upgrade-table td:first-child { color: var(--text); font-weight: 700; }
+    /* ── MECHANIC BOX ── */
+    .mechanic-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+    .mechanic-box .rule-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .mechanic-box p {
+      font-size: 14px;
+      color: var(--text);
+      margin: 0;
+    }
+    .mechanic-box strong { color: var(--text); }
 
-/* INFOGRAPHIC */
-.infographic-wrap { margin: 20px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg2); }
-.infographic-inner { padding: 20px 16px 28px; }
-.inf-title { text-align:center; font-size:18px; font-weight:700; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:3px; }
-.inf-sub { text-align:center; font-size:10px; color:var(--gold-dim); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
-.inf-sec { text-align:center; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
-.lbl-h { color:#4a9fd4; } .lbl-a { color:#d45a4a; } .lbl-b { color:#e89c4a; }
-canvas { display:block; }
-.inf-bottom { display:flex; gap:12px; align-items:flex-start; margin-top:14px; flex-wrap:wrap; }
-.inf-agile { flex:1; min-width:280px; }
-.inf-brutal { flex:1; width:100%; margin-top:20px; }
-.inf-peasant { display:flex; flex-direction:column; align-items:center; gap:8px; padding:0 4px; flex-shrink:0; }
-.inf-pnote { text-align:center; font-size:10px; color:#8a7040; line-height:1.5; max-width:105px; }
-.inf-pnote strong { display:block; color:var(--gold); font-size:10px; margin-bottom:2px; }
+    /* ── STARTER CLASSES ── */
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .class-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .class-card .card-icon { font-size: 22px; }
+    .class-card .card-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .class-card .card-loop {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+    .class-card .card-teaches {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .loop-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+    .loop-tag.heavy  { background: rgba(92,156,245,.12); color: var(--heavy); }
+    .loop-tag.agile  { background: rgba(94,207,138,.12); color: var(--agile); }
+    .loop-tag.brutal { background: rgba(224,92,92,.12);  color: var(--brutal); }
+    .loop-tag.origin { background: rgba(201,168,76,.12); color: var(--origin); }
 
-.kofi-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--gold); color: #09090f;
-  font-family: Georgia, serif; font-size: 12px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
-  padding: 9px 20px; border-radius: 24px;
-  transition: opacity 0.2s;
-}
-.kofi-btn:hover { opacity: 0.85; }
-.kofi-nav {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.4);
-  color: var(--gold); font-size: 11px; font-weight: 700;
-  letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
-  padding: 5px 14px; border-radius: 20px;
-  transition: background 0.2s;
-}
-.kofi-nav:hover { background: rgba(201,168,76,0.2); }
-footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
-footer a { color: var(--gold); text-decoration: none; }
-</style>
+    .strategy-box {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .strategy-box strong { color: var(--text); }
+
+    /* ── ACHIEVEMENT UNLOCKS ── */
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .achievement-pill {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .achievement-pill .a-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .achievement-pill .a-sub {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* ── SKILL TREE ── */
+    .tier-block {
+      margin-top: 28px;
+    }
+    .tier-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tier-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .tier-count {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .tier-classes {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .skill-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .skill-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .skill-item:last-child { border-bottom: none; }
+    .skill-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+    .skill-body .skill-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .skill-chain {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .skill-body .skill-why {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── LOOPS ── */
+    .loops-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .loop-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+    }
+    .loop-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .loop-card-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .loop-class-count {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .loop-class-count.heavy  { background: rgba(92,156,245,.15); color: var(--heavy); }
+    .loop-class-count.agile  { background: rgba(94,207,138,.15); color: var(--agile); }
+    .loop-class-count.brutal { background: rgba(224,92,92,.15);  color: var(--brutal); }
+    .loop-sequence {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .loop-sequence .arrow { color: var(--border); }
+    .loop-sequence .wrap  { color: var(--muted); font-style: italic; }
+    .loop-sequence .cls   { color: var(--text); }
+    .loop-sequence .cls.new { color: var(--agile); font-weight: 600; }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      margin-top: 24px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    thead {
+      background: var(--bg3);
+    }
+    thead th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .1s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--bg2); }
+    tbody td {
+      padding: 10px 16px;
+      color: var(--text);
+      vertical-align: middle;
+    }
+    tbody td.muted { color: var(--muted); }
+    .method-badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .method-badge.starter  { background: rgba(201,168,76,.12); color: var(--origin); }
+    .method-badge.achieve  { background: rgba(124,106,184,.15); color: var(--accent2); }
+    .method-badge.tree-e   { background: rgba(92,156,245,.12); color: var(--heavy); }
+    .method-badge.tree-m   { background: rgba(94,207,138,.12); color: var(--agile); }
+
+    /* ── NEW ROW HIGHLIGHT ── */
+    tr.new-row td { position: relative; }
+    tr.new-row td:first-child::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--agile);
+      border-radius: 2px 0 0 2px;
+    }
+
+    /* ── FOOTER ── */
+    .cta-block {
+      margin-top: 64px;
+      padding: 32px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+    .cta-block p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .btn-support {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      background: var(--accent);
+      color: #0f0f11;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .btn-support:hover { opacity: .85; }
+
+    footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 24px 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+    }
+    footer p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      .tier-classes { display: none; }
+      .loop-sequence { font-size: 11px; }
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="#">Legionbound Guide</a>
-  <ul class="nav-links">
-    <li><a href="#starters">Starters</a></li>
-    <li><a href="#achievements">Achievements</a></li>
-    <li><a href="#skilltree">Skill Tree</a></li>
-    <li><a href="#loops">Loops</a></li>
-    <li><a href="#paths">All Paths</a></li>
-  </ul>
-  <a class="kofi-nav" href="https://ko-fi.com/ashi757" target="_blank">☕ Tip</a>
-</nav>
-
-<div class="hero">
-  <div class="hero-eyebrow">Legionbound Complete Guide</div>
-  <h1>How to Unlock <span>Every Class</span></h1>
-  <p class="hero-sub">Starting classes, achievement unlocks, optimal skill tree order, and the full synergy loop reference — all in one place.</p>
-  <div class="hero-badges">
-    <span class="badge">🎮 PC / Steam</span>
-    <span class="badge">29 Classes</span>
-    <span class="badge">5 Starting Classes</span>
-    <span class="badge">3 Unlock Methods</span>
-  </div>
-</div>
-
-<div class="container">
-
-  <!-- HOW IT WORKS -->
-  <section id="mechanic">
-    <div class="section-eyebrow">Core Mechanic</div>
-    <h2>How Class Upgrades Work</h2>
-    <p>Legionbound uses a synergy-based upgrade system. When a teacher class is on the field with its student class, it provides upgrade experience, eventually allowing the student to promote to the upgraded form.</p>
-    <div class="callout">
-      <div class="callout-label">The Rule</div>
-      <p>Each class <strong>teaches the next class in its loop</strong> simply by being present on the battlefield. Proximity is not required — having both classes on the field is sufficient.</p>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">Legionbound Guide</a>
+      <ul class="nav-links">
+        <li><a href="#starters">Starters</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#skilltree">Skill Tree</a></li>
+        <li><a href="#loops">Loops</a></li>
+        <li><a href="#paths">All Paths</a></li>
+      </ul>
+      <a class="nav-tip" href="https://ko-fi.com/ashi757" target="_blank" rel="noopener">☕ Tip</a>
     </div>
-  </section>
+  </nav>
 
-  <!-- STARTING CLASSES -->
-  <section id="starters">
-    <div class="section-eyebrow">Available From The Start</div>
-    <h2>Starting Classes</h2>
-    <p>These five classes are available immediately with no unlocking required. They provide strong entry points into both major loops.</p>
-    <div class="starter-grid">
-      <div class="starter-card heavy">
-        <div class="starter-icon">🪓</div>
-        <div class="starter-name">Warrior</div>
-        <div class="starter-role">Heavy Loop — teaches Sorcerer</div>
-      </div>
-      <div class="starter-card heavy">
-        <div class="starter-icon">📜</div>
-        <div class="starter-name">Cleric</div>
-        <div class="starter-role">Heavy Loop — teaches Paladin</div>
-      </div>
-      <div class="starter-card heavy">
-        <div class="starter-icon">📖</div>
-        <div class="starter-name">Wizard</div>
-        <div class="starter-role">Heavy Loop — teaches Druid</div>
-      </div>
-      <div class="starter-card agile">
-        <div class="starter-icon">🏹</div>
-        <div class="starter-name">Ranger</div>
-        <div class="starter-role">Agile Loop — teaches Artificer</div>
-      </div>
-      <div class="starter-card agile">
-        <div class="starter-icon">🗡</div>
-        <div class="starter-name">Rogue</div>
-        <div class="starter-role">Agile Loop — teaches Duelist</div>
+  <!-- HERO -->
+  <main>
+    <div class="hero">
+      <div class="hero-eyebrow">Legionbound Complete Guide</div>
+      <h1>How to Unlock Every Class</h1>
+      <p class="hero-sub">Starting classes, achievement unlocks, optimal skill tree order, and the full synergy loop reference — all in one place.</p>
+      <div class="stat-badges">
+        <div class="stat-badge"><span class="icon">🎮</span> <strong>PC / Steam</strong></div>
+        <div class="stat-badge"><strong>30</strong> <span>Classes</span></div>
+        <div class="stat-badge"><strong>5</strong> <span>Starting Classes</span></div>
+        <div class="stat-badge"><strong>3</strong> <span>Unlock Methods</span></div>
       </div>
     </div>
-    <div class="callout">
-      <div class="callout-label">Starting Strategy</div>
-      <p>Bring Warrior and Cleric early to begin progressing the Heavy loop. Keeping key teachers on the field will steadily grant upgrade experience to their students.</p>
-    </div>
-  </section>
 
-  <!-- ACHIEVEMENTS -->
-  <section id="achievements">
-    <div class="section-eyebrow">Second Unlock Method</div>
-    <h2>Achievement Unlocks</h2>
-    <p>Ten classes are unlocked by completing in-game achievements. These are earned through normal gameplay — knowing them helps you plan skill tree spending more efficiently.</p>
-    <div class="achiev-grid">
-      <div class="achiev-pill">Tax Collector <span>Brutal Economy</span></div>
-      <div class="achiev-pill">Witch <span>Heavy Loop</span></div>
-      <div class="achiev-pill">Lumberjack <span>Heavy Loop</span></div>
-      <div class="achiev-pill">Priest <span>Heavy Loop</span></div>
-      <div class="achiev-pill">Barkeep <span>Agile Loop</span></div>
-      <div class="achiev-pill">Monk <span>Agile Loop</span></div>
-      <div class="achiev-pill">Artificer <span>Agile Loop</span></div>
-      <div class="achiev-pill">Herbalist <span>Agile Loop</span></div>
-      <div class="achiev-pill">Duelist <span>Agile Loop</span></div>
-      <div class="achiev-pill">Peasant <span>Origin</span></div>
-    </div>
-    <div class="callout">
-      <div class="callout-label">Skill Tree Planning</div>
-      <p>Unlocking classes in the skill tree allows you to increase your teaching chains.</p>
-    </div>
-  </section>
+    <!-- CORE MECHANIC -->
+    <section>
+      <div class="section-label">Core Mechanic</div>
+      <h2>How Class Upgrades Work</h2>
+      <p>Legionbound uses a synergy-based upgrade system. When a teacher class is on the field with its student class, it provides upgrade experience, eventually allowing the student to promote to the upgraded form.</p>
+      <div class="mechanic-box">
+        <div class="rule-label">The Rule</div>
+        <p>Each class <strong>teaches the next class in its loop</strong> simply by being present on the battlefield. Proximity is not required — having both classes on the field is sufficient.</p>
+      </div>
+    </section>
 
-  <!-- SKILL TREE -->
-  <section id="skilltree">
-    <div class="section-eyebrow">Third Unlock Method</div>
-    <h2>Skill Tree — Optimal Unlock Order</h2>
-    <p>Fourteen classes must be unlocked through the skill tree. Prioritize classes that anchor long teaching sequences.</p>
+    <!-- STARTING CLASSES -->
+    <section id="starters">
+      <div class="section-label">Available From The Start</div>
+      <h2>Starting Classes</h2>
+      <p>These five classes are available immediately with no unlocking required. They provide strong entry points into both major loops.</p>
+      <div class="class-grid">
+        <div class="class-card">
+          <span class="card-icon">🪓</span>
+          <div class="card-name">Warrior</div>
+          <div class="card-teaches">Teaches Sorcerer</div>
+          <span class="loop-tag heavy">Heavy</span>
+        </div>
+        <div class="class-card">
+          <span class="card-icon">📜</span>
+          <div class="card-name">Cleric</div>
+          <div class="card-teaches">Teaches Paladin</div>
+          <span class="loop-tag heavy">Heavy</span>
+        </div>
+        <div class="class-card">
+          <span class="card-icon">📖</span>
+          <div class="card-name">Wizard</div>
+          <div class="card-teaches">Teaches Druid</div>
+          <span class="loop-tag heavy">Heavy</span>
+        </div>
+        <div class="class-card">
+          <span class="card-icon">🏹</span>
+          <div class="card-name">Ranger</div>
+          <div class="card-teaches">Teaches Samurai</div>
+          <span class="loop-tag agile">Agile</span>
+        </div>
+        <div class="class-card">
+          <span class="card-icon">🗡️</span>
+          <div class="card-name">Rogue</div>
+          <div class="card-teaches">Teaches Duelist</div>
+          <span class="loop-tag agile">Agile</span>
+        </div>
+      </div>
+      <div class="strategy-box">
+        <strong>Starting strategy:</strong> Bring Warrior and Cleric early to begin progressing the Heavy loop. Keeping key teachers on the field will steadily grant upgrade experience to their students.
+      </div>
+    </section>
 
-    <div class="skill-tiers">
-      <div class="skill-tier easy">
+    <!-- ACHIEVEMENT UNLOCKS -->
+    <section id="achievements">
+      <div class="section-label">Second Unlock Method</div>
+      <h2>Achievement Unlocks</h2>
+      <p>Ten classes are unlocked by completing in-game achievements. These are earned through normal gameplay — knowing them helps you plan skill tree spending more efficiently.</p>
+      <div class="achievement-grid">
+        <div class="achievement-pill">
+          <div class="a-name">Tax Collector</div>
+          <div class="a-sub">Brutal Economy</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Witch</div>
+          <div class="a-sub">Heavy Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Lumberjack</div>
+          <div class="a-sub">Heavy Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Priest</div>
+          <div class="a-sub">Heavy Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Barkeep</div>
+          <div class="a-sub">Agile Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Monk</div>
+          <div class="a-sub">Agile Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Artificer</div>
+          <div class="a-sub">Agile Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Herbalist</div>
+          <div class="a-sub">Agile Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Duelist</div>
+          <div class="a-sub">Agile Loop</div>
+        </div>
+        <div class="achievement-pill">
+          <div class="a-name">Peasant</div>
+          <div class="a-sub">Origin</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL TREE -->
+    <section id="skilltree">
+      <div class="section-label">Third Unlock Method</div>
+      <h2>Skill Tree — Optimal Unlock Order</h2>
+      <p>Fifteen classes must be unlocked through the skill tree. Prioritize classes that anchor long teaching sequences.</p>
+
+      <!-- EASY TIER -->
+      <div class="tier-block">
         <div class="tier-header">
-          <div class="tier-badge easy-badge">Easy Tier — 6 classes</div>
-          <div class="tier-desc">Mercenary · Guardian · Swashbuckler · Brawler · Druid · Shieldmage</div>
+          <span class="tier-name">Easy Tier</span>
+          <span class="tier-count">— 6 classes</span>
+          <span class="tier-classes">Mercenary · Guardian · Swashbuckler · Brawler · Druid · Shieldmage</span>
         </div>
-        <div class="skill-steps">
-          <div class="skill-step">
-            <div class="step-num">1</div>
-            <div class="step-body">
-              <div class="step-name">Druid</div>
-              <div class="step-chain">Druid → Wizard (starter) → Battlemage → Shieldmage</div>
-              <div class="step-reason">Your starter Wizard is already on the field. Unlocking Druid extends the chain backwards, giving you multiple connected upgrades from one skill point.</div>
+        <div class="skill-items">
+          <div class="skill-item">
+            <span class="skill-num">1</span>
+            <div class="skill-body">
+              <div class="skill-name">Druid</div>
+              <div class="skill-chain">Druid → Wizard (starter) → Battlemage → Shieldmage</div>
+              <div class="skill-why">Your starter Wizard is already on the field. Unlocking Druid extends the chain backwards, giving you multiple connected upgrades from one skill point.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">2</div>
-            <div class="step-body">
-              <div class="step-name">Guardian</div>
-              <div class="step-chain">Shieldmage → Guardian → Smith → Knight (→ Priest, earned via achievement)</div>
-              <div class="step-reason">Unlocking Guardian opens Smith and Knight downstream. Priest comes free from achievements.</div>
+          <div class="skill-item">
+            <span class="skill-num">2</span>
+            <div class="skill-body">
+              <div class="skill-name">Guardian</div>
+              <div class="skill-chain">Shieldmage → Guardian → Smith → Knight (→ Priest, earned via achievement)</div>
+              <div class="skill-why">Unlocking Guardian opens Smith and Knight downstream. Priest comes free from achievements.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">3</div>
-            <div class="step-body">
-              <div class="step-name">Swashbuckler</div>
-              <div class="step-chain">Swashbuckler → Gunslinger → Duelist (achievement) → Rogue (starter)</div>
-              <div class="step-reason">Swashbuckler starts the longest chain in the Agile loop. Duelist and Rogue are covered otherwise.</div>
+          <div class="skill-item">
+            <span class="skill-num">3</span>
+            <div class="skill-body">
+              <div class="skill-name">Swashbuckler</div>
+              <div class="skill-chain">Swashbuckler → Gunslinger → Duelist (achievement) → Rogue (starter)</div>
+              <div class="skill-why">Swashbuckler starts the longest chain in the Agile loop. Duelist and Rogue are covered otherwise.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">4</div>
-            <div class="step-body">
-              <div class="step-name">Brawler</div>
-              <div class="step-chain">Mercenary → Brawler → Barbarian → Warrior (starter)</div>
-              <div class="step-reason">Brawler anchors a strong segment that wraps back to your starter Warrior.</div>
+          <div class="skill-item">
+            <span class="skill-num">4</span>
+            <div class="skill-body">
+              <div class="skill-name">Brawler</div>
+              <div class="skill-chain">Mercenary → Brawler → Barbarian → Warrior (starter)</div>
+              <div class="skill-why">Brawler anchors a strong segment that wraps back to your starter Warrior.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">5</div>
-            <div class="step-body">
-              <div class="step-name">Mercenary</div>
-              <div class="step-chain">Tax Collector (achievement) → Mercenary → Brawler</div>
-              <div class="step-reason">Tax Collector comes free, so one skill point completes this Brutal segment.</div>
+          <div class="skill-item">
+            <span class="skill-num">5</span>
+            <div class="skill-body">
+              <div class="skill-name">Mercenary</div>
+              <div class="skill-chain">Tax Collector (achievement) → Mercenary → Brawler</div>
+              <div class="skill-why">Tax Collector comes free, so one skill point completes this Brutal segment.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">6</div>
-            <div class="step-body">
-              <div class="step-name">Shieldmage</div>
-              <div class="step-chain">Battlemage → Shieldmage → Guardian</div>
-              <div class="step-reason">Closes the chain started earlier with Druid and Wizard.</div>
+          <div class="skill-item">
+            <span class="skill-num">6</span>
+            <div class="skill-body">
+              <div class="skill-name">Shieldmage</div>
+              <div class="skill-chain">Battlemage → Shieldmage → Guardian</div>
+              <div class="skill-why">Closes the chain started earlier with Druid and Wizard.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="skill-tier medium">
+      <!-- MEDIUM TIER -->
+      <div class="tier-block">
         <div class="tier-header">
-          <div class="tier-badge medium-badge">Medium Tier — 8 classes</div>
-          <div class="tier-desc">Gunslinger · Paladin · Samurai · Knight · Bard · Sorcerer · Barbarian · Battlemage · Smith</div>
+          <span class="tier-name">Medium Tier</span>
+          <span class="tier-count">— 9 classes</span>
+          <span class="tier-classes">Gunslinger · Paladin · Samurai · Knight · Bard · Sorcerer · Barbarian · Battlemage · Smith</span>
         </div>
-        <div class="skill-steps">
-          <div class="skill-step">
-            <div class="step-num">1</div>
-            <div class="step-body">
-              <div class="step-name">Battlemage</div>
-              <div class="step-chain">Wizard (starter) → Battlemage → Shieldmage</div>
-              <div class="step-reason">Connects the Druid → Wizard chain through to Guardian.</div>
+        <div class="skill-items">
+          <div class="skill-item">
+            <span class="skill-num">1</span>
+            <div class="skill-body">
+              <div class="skill-name">Battlemage</div>
+              <div class="skill-chain">Wizard (starter) → Battlemage → Shieldmage</div>
+              <div class="skill-why">Connects the Druid → Wizard chain through to Guardian.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">2</div>
-            <div class="step-body">
-              <div class="step-name">Smith</div>
-              <div class="step-chain">Guardian → Smith → Knight → Priest (achievement)</div>
-              <div class="step-reason">One point completes a strong Heavy chain.</div>
+          <div class="skill-item">
+            <span class="skill-num">2</span>
+            <div class="skill-body">
+              <div class="skill-name">Smith</div>
+              <div class="skill-chain">Guardian → Smith → Knight → Priest (achievement)</div>
+              <div class="skill-why">One point completes a strong Heavy chain.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">3</div>
-            <div class="step-body">
-              <div class="step-name">Sorcerer</div>
-              <div class="step-chain">Witch (achievement) → Sorcerer → Tax Collector (achievement)</div>
-              <div class="step-reason">Fills the only gap between two achievement classes.</div>
+          <div class="skill-item">
+            <span class="skill-num">3</span>
+            <div class="skill-body">
+              <div class="skill-name">Sorcerer</div>
+              <div class="skill-chain">Witch (achievement) → Sorcerer → Tax Collector (achievement)</div>
+              <div class="skill-why">Fills the only gap between two achievement classes.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">4</div>
-            <div class="step-body">
-              <div class="step-name">Paladin</div>
-              <div class="step-chain">Priest (achievement) → Paladin → Cleric (starter)</div>
-              <div class="step-reason">Completes the segment with one skill point.</div>
+          <div class="skill-item">
+            <span class="skill-num">4</span>
+            <div class="skill-body">
+              <div class="skill-name">Paladin</div>
+              <div class="skill-chain">Priest (achievement) → Paladin → Cleric (starter)</div>
+              <div class="skill-why">Completes the segment with one skill point.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">5</div>
-            <div class="step-body">
-              <div class="step-name">Barbarian</div>
-              <div class="step-chain">Brawler → Barbarian → Warrior (starter)</div>
-              <div class="step-reason">Closes the Heavy loop wrap.</div>
+          <div class="skill-item">
+            <span class="skill-num">5</span>
+            <div class="skill-body">
+              <div class="skill-name">Barbarian</div>
+              <div class="skill-chain">Brawler → Barbarian → Warrior (starter)</div>
+              <div class="skill-why">Closes the Heavy loop wrap.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">6</div>
-            <div class="step-body">
-              <div class="step-name">Gunslinger</div>
-              <div class="step-chain">Swashbuckler → Gunslinger → Duelist (achievement)</div>
-              <div class="step-reason">Completes the Agile segment with one point.</div>
+          <div class="skill-item">
+            <span class="skill-num">6</span>
+            <div class="skill-body">
+              <div class="skill-name">Gunslinger</div>
+              <div class="skill-chain">Swashbuckler → Gunslinger → Duelist (achievement)</div>
+              <div class="skill-why">Completes the Agile segment with one point.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">7</div>
-            <div class="step-body">
-              <div class="step-name">Knight</div>
-              <div class="step-chain">Smith → Knight → Priest (achievement)</div>
-              <div class="step-reason">Fills the final gap in the Smith-Knight-Priest chain.</div>
+          <div class="skill-item">
+            <span class="skill-num">7</span>
+            <div class="skill-body">
+              <div class="skill-name">Knight</div>
+              <div class="skill-chain">Smith → Knight → Priest (achievement)</div>
+              <div class="skill-why">Fills the final gap in the Smith-Knight-Priest chain.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">8</div>
-            <div class="step-body">
-              <div class="step-name">Bard</div>
-              <div class="step-chain">Monk (achievement) → Bard → Swashbuckler</div>
-              <div class="step-reason">Single link needed for this Agile segment.</div>
+          <div class="skill-item">
+            <span class="skill-num">8</span>
+            <div class="skill-body">
+              <div class="skill-name">Bard</div>
+              <div class="skill-chain">Monk (achievement) → Bard → Swashbuckler</div>
+              <div class="skill-why">Single link needed for this Agile segment.</div>
             </div>
           </div>
-          <div class="skill-step">
-            <div class="step-num">9</div>
-            <div class="step-body">
-              <div class="step-name">Samurai</div>
-              <div class="step-chain">Rogue (starter) → Samurai → Artificer (achievement)</div>
-              <div class="step-reason">Completes the Agile loop wrap.</div>
+          <div class="skill-item">
+            <span class="skill-num">9</span>
+            <div class="skill-body">
+              <div class="skill-name">Samurai</div>
+              <div class="skill-chain">Ranger (starter) → Samurai → Artificer (achievement)</div>
+              <div class="skill-why">Completes the Agile loop wrap.</div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- LOOPS -->
+    <section id="loops">
+      <div class="section-label">Visual Reference</div>
+      <h2>Class Synergy Loops</h2>
+      <p>Each class grants upgrade experience to the next class in the loop when both are on the field. Follow the arrows clockwise.</p>
+      <div class="loops-grid">
+
+        <!-- AGILE -->
+        <div class="loop-card">
+          <div class="loop-card-header">
+            <div class="loop-card-title">⚔️ Agile Martial Loop <span class="loop-class-count agile">11 classes</span></div>
+          </div>
+          <div class="loop-sequence">
+            <span class="cls">Rogue</span>
+            <span class="arrow"> → </span><span class="cls">Duelist</span>
+            <span class="arrow"> → </span><span class="cls">Gunslinger</span>
+            <span class="arrow"> → </span><span class="cls">Swashbuckler</span>
+            <span class="arrow"> → </span><span class="cls">Bard</span>
+            <span class="arrow"> → </span><span class="cls">Monk</span>
+            <span class="arrow"> → </span><span class="cls">Barkeep</span>
+            <span class="arrow"> → </span><span class="cls">Herbalist</span>
+            <span class="arrow"> → </span><span class="cls">Ranger</span>
+            <span class="arrow"> → </span><span class="cls new">Samurai</span>
+            <span class="arrow"> → </span><span class="cls">Artificer</span>
+            <span class="arrow"> → </span><span class="wrap">back to Rogue</span>
+          </div>
+        </div>
+
+        <!-- HEAVY -->
+        <div class="loop-card">
+          <div class="loop-card-header">
+            <div class="loop-card-title">🛡️ Heavy &amp; Caster Loop <span class="loop-class-count heavy">14 classes</span></div>
+          </div>
+          <div class="loop-sequence">
+            <span class="cls">Wizard</span>
+            <span class="arrow"> → </span><span class="cls">Druid</span>
+            <span class="arrow"> → </span><span class="cls">Lumberjack</span>
+            <span class="arrow"> → </span><span class="cls">Warrior</span>
+            <span class="arrow"> → </span><span class="cls">Sorcerer</span>
+            <span class="arrow"> → </span><span class="cls">Witch</span>
+            <span class="arrow"> → </span><span class="cls">Cleric</span>
+            <span class="arrow"> → </span><span class="cls">Paladin</span>
+            <span class="arrow"> → </span><span class="cls">Priest</span>
+            <span class="arrow"> → </span><span class="cls">Knight</span>
+            <span class="arrow"> → </span><span class="cls">Smith</span>
+            <span class="arrow"> → </span><span class="cls">Guardian</span>
+            <span class="arrow"> → </span><span class="cls">Shieldmage</span>
+            <span class="arrow"> → </span><span class="cls">Battlemage</span>
+            <span class="arrow"> → </span><span class="wrap">back to Wizard</span>
+          </div>
+        </div>
+
+        <!-- BRUTAL -->
+        <div class="loop-card">
+          <div class="loop-card-header">
+            <div class="loop-card-title">💢 Brutal Economy Loop <span class="loop-class-count brutal">4 classes</span></div>
+          </div>
+          <div class="loop-sequence">
+            <span class="cls">Barbarian</span>
+            <span class="arrow"> → </span><span class="cls">Brawler</span>
+            <span class="arrow"> → </span><span class="cls">Mercenary</span>
+            <span class="arrow"> → </span><span class="cls">Tax Collector</span>
+            <span class="arrow"> → </span><span class="wrap">back to Barbarian</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ALL CLASSES TABLE -->
+    <section id="paths">
+      <div class="section-label">Full Reference</div>
+      <h2>All Classes — Unlock Method &amp; Teacher</h2>
+      <p>Every class, how you get it, and which class it teaches when on the field.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>How to Unlock</th>
+              <th>Teaches</th>
+              <th>Loop</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Warrior</td>
+              <td><span class="method-badge starter">Starter</span></td>
+              <td class="muted">Sorcerer</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Cleric</td>
+              <td><span class="method-badge starter">Starter</span></td>
+              <td class="muted">Paladin</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Wizard</td>
+              <td><span class="method-badge starter">Starter</span></td>
+              <td class="muted">Druid</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Ranger</td>
+              <td><span class="method-badge starter">Starter</span></td>
+              <td class="muted">Samurai</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Rogue</td>
+              <td><span class="method-badge starter">Starter</span></td>
+              <td class="muted">Duelist</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Lumberjack</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Warrior</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Priest</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Knight</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Witch</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Cleric</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Tax Collector</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Barbarian</td>
+              <td><span class="loop-tag brutal">Brutal</span></td>
+            </tr>
+            <tr>
+              <td>Herbalist</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Ranger</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Barkeep</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Herbalist</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Monk</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Barkeep</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Artificer</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Rogue</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Duelist</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">Gunslinger</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Peasant</td>
+              <td><span class="method-badge achieve">Achievement</span></td>
+              <td class="muted">—</td>
+              <td><span class="loop-tag origin">Origin</span></td>
+            </tr>
+            <tr>
+              <td>Druid</td>
+              <td><span class="method-badge tree-e">Skill Tree (Easy)</span></td>
+              <td class="muted">Lumberjack</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Guardian</td>
+              <td><span class="method-badge tree-e">Skill Tree (Easy)</span></td>
+              <td class="muted">Smith</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Shieldmage</td>
+              <td><span class="method-badge tree-e">Skill Tree (Easy)</span></td>
+              <td class="muted">Guardian</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Swashbuckler</td>
+              <td><span class="method-badge tree-e">Skill Tree (Easy)</span></td>
+              <td class="muted">Bard</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Brawler</td>
+              <td><span class="method-badge tree-e">Skill Tree (Easy)</span></td>
+              <td class="muted">Mercenary</td>
+              <td><span class="loop-tag brutal">Brutal</span></td>
+            </tr>
+            <tr>
+              <td>Mercenary</td>
+              <td><span class="method-badge tree-e">Skill Tree (Easy)</span></td>
+              <td class="muted">Tax Collector</td>
+              <td><span class="loop-tag brutal">Brutal</span></td>
+            </tr>
+            <tr>
+              <td>Battlemage</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Wizard</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Smith</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Knight</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Knight</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Priest</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Paladin</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Cleric</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Sorcerer</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Witch</td>
+              <td><span class="loop-tag heavy">Heavy</span></td>
+            </tr>
+            <tr>
+              <td>Barbarian</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Brawler</td>
+              <td><span class="loop-tag brutal">Brutal</span></td>
+            </tr>
+            <tr>
+              <td>Gunslinger</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Swashbuckler</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr>
+              <td>Bard</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Monk</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+            <tr class="new-row">
+              <td>Samurai</td>
+              <td><span class="method-badge tree-m">Skill Tree (Medium)</span></td>
+              <td class="muted">Artificer</td>
+              <td><span class="loop-tag agile">Agile</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <p>This guide is free and always will be.<br>If it helped you, a coffee keeps it updated.</p>
+      <a class="btn-support" href="https://ko-fi.com/ashi757" target="_blank" rel="noopener">☕ Support the Guide</a>
     </div>
-  </section>
+  </main>
 
-  <!-- LOOPS -->
-  <section id="loops">
-    <div class="section-eyebrow">Visual Reference</div>
-    <h2>Class Synergy Loops</h2>
-    <p>Each class grants upgrade experience to the next class in the loop when both are on the field. Follow the arrows clockwise.</p>
-    <div class="infographic-wrap">
-      <div class="infographic-inner">
-        <div class="inf-title">Legionbound</div>
-        <div class="inf-sub">Synergy Loops</div>
-        <div class="inf-sec lbl-h">Heavy &amp; Caster Loop (14)</div>
-        <canvas id="cH"></canvas>
-        <div class="inf-bottom">
-          <div class="inf-agile">
-            <div class="inf-sec lbl-a" style="margin-top:4px">Agile Martial Loop (10)</div>
-            <canvas id="cA"></canvas>
-          </div>
-        </div>
-        <div class="inf-brutal">
-          <div class="inf-sec lbl-b" style="margin-top:20px">Brutal Economy Loop (4)</div>
-          <canvas id="cB"></canvas>
-        </div>
-        <div class="inf-peasant" style="margin-top:20px">
-          <canvas id="cP"></canvas>
-          <div class="inf-pnote"><strong>Any 3 Synergy Classes</strong><br>Combine any three from any loop</div>
-        </div>
-      </div>
-    </div>
+  <footer>
+    <p>Legionbound Class Guide · Fan-made resource · Not affiliated with the developers</p>
+    <a href="https://store.steampowered.com/search/?term=legionbound" target="_blank" rel="noopener">Find Legionbound on Steam →</a>
+  </footer>
 
-    <div class="loop-cards">
-      <div class="loop-card agile">
-        <h3>⚔️ Agile Martial Loop — 10 Classes</h3>
-        <div class="class-chain">
-          Rogue → Duelist → Gunslinger → Swashbuckler → Bard → Monk → Barkeep → Herbalist → Ranger → Artificer → back to Rogue
-        </div>
-      </div>
-      <div class="loop-card heavy">
-        <h3>🛡️ Heavy &amp; Caster Loop — 14 Classes</h3>
-        <div class="class-chain">
-          Wizard → Druid → Lumberjack → Warrior → Sorcerer → Witch → Cleric → Paladin → Priest → Knight → Smith → Guardian → Shieldmage → Battlemage → back to Wizard
-        </div>
-      </div>
-      <div class="loop-card brutal">
-        <h3>💢 Brutal Economy Loop — 4 Classes</h3>
-        <div class="class-chain">
-          Barbarian → Brawler → Mercenary → Tax Collector → back to Barbarian
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ALL PATHS -->
-  <section id="paths">
-    <div class="section-eyebrow">Full Reference</div>
-    <h2>All Classes — Unlock Method &amp; Teacher</h2>
-    <p>Every class, how you get it, and which class it teaches (grants upgrade experience to) when on the field.</p>
-    <table class="upgrade-table">
-      <thead>
-        <tr><th>Class</th><th>How to Unlock</th><th>Teaches</th><th>Loop</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Warrior</td><td><span class="tag tag-start">Starter</span></td><td>Sorcerer</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Cleric</td><td><span class="tag tag-start">Starter</span></td><td>Paladin</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Wizard</td><td><span class="tag tag-start">Starter</span></td><td>Druid</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Ranger</td><td><span class="tag tag-start">Starter</span></td><td>Artificer</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Rogue</td><td><span class="tag tag-start">Starter</span></td><td>Duelist</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Lumberjack</td><td><span class="tag tag-achiev">Achievement</span></td><td>Warrior</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Priest</td><td><span class="tag tag-achiev">Achievement</span></td><td>Knight</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Witch</td><td><span class="tag tag-achiev">Achievement</span></td><td>Cleric</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Tax Collector</td><td><span class="tag tag-achiev">Achievement</span></td><td>Barbarian</td><td><span class="tag tag-brutal">Brutal</span></td></tr>
-        <tr><td>Herbalist</td><td><span class="tag tag-achiev">Achievement</span></td><td>Ranger</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Barkeep</td><td><span class="tag tag-achiev">Achievement</span></td><td>Herbalist</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Monk</td><td><span class="tag tag-achiev">Achievement</span></td><td>Barkeep</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Artificer</td><td><span class="tag tag-achiev">Achievement</span></td><td>Rogue</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Duelist</td><td><span class="tag tag-achiev">Achievement</span></td><td>Gunslinger</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Peasant</td><td><span class="tag tag-achiev">Achievement</span></td><td>—</td><td><span class="tag tag-origin">Origin</span></td></tr>
-        <tr><td>Druid</td><td><span class="tag tag-easy">Skill Tree (Easy)</span></td><td>Lumberjack</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Guardian</td><td><span class="tag tag-easy">Skill Tree (Easy)</span></td><td>Smith</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Shieldmage</td><td><span class="tag tag-easy">Skill Tree (Easy)</span></td><td>Guardian</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Swashbuckler</td><td><span class="tag tag-easy">Skill Tree (Easy)</span></td><td>Bard</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Brawler</td><td><span class="tag tag-easy">Skill Tree (Easy)</span></td><td>Mercenary</td><td><span class="tag tag-brutal">Brutal</span></td></tr>
-        <tr><td>Mercenary</td><td><span class="tag tag-easy">Skill Tree (Easy)</span></td><td>Tax Collector</td><td><span class="tag tag-brutal">Brutal</span></td></tr>
-        <tr><td>Battlemage</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Wizard</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Smith</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Knight</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Knight</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Priest</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Paladin</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Cleric</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Sorcerer</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Witch</td><td><span class="tag tag-heavy">Heavy</span></td></tr>
-        <tr><td>Barbarian</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Brawler</td><td><span class="tag tag-brutal">Brutal</span></td></tr>
-        <tr><td>Gunslinger</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Swashbuckler</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Bard</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Monk</td><td><span class="tag tag-agile">Agile</span></td></tr>
-        <tr><td>Samurai</td><td><span class="tag tag-medium">Skill Tree (Medium)</span></td><td>Artificer</td><td><span class="tag tag-agile">Agile</span></td></tr>
-      </tbody>
-    </table>
-  </section>
-
-</div>
-
-<footer>
-  <p style="margin-bottom:16px; font-size:13px; color:var(--text-dim); max-width:400px; margin-left:auto; margin-right:auto; line-height:1.6;">
-    This guide is free and always will be.<br>If it helped you, a coffee keeps it updated.
-  </p>
-  <a class="kofi-btn" href="https://ko-fi.com/ashi757" target="_blank">☕ &nbsp;Support the Guide</a>
-  <p style="margin-top:20px">Legionbound Class Guide &nbsp;·&nbsp; Fan-made resource &nbsp;·&nbsp; Not affiliated with the developers</p>
-  <p style="margin-top:6px"><a href="https://store.steampowered.com/search/?term=legionbound" target="_blank">Find Legionbound on Steam →</a></p>
-</footer>
-
-<script>
-var HEAVY = ['Wizard','Druid','Lumberjack','Warrior','Sorcerer','Witch','Cleric','Paladin','Priest','Knight','Smith','Guardian','Shieldmage','Battlemage'];
-var AGILE = ['Rogue','Duelist','Gunslinger','Swashbuckler','Bard','Monk','Barkeep','Herbalist','Ranger','Artificer'];
-var BRUTAL = ['Barbarian','Brawler','Mercenary','Tax Collector'];
-
-var R=22, FS=9.5, HC='rgba(74,159,212,0.9)', AC='rgba(212,90,74,0.9)', BC='rgba(232,156,74,0.9)', GC='#c9a84c';
-
-function icon(ctx,name,x,y,col){
-  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
-  var n=name.toLowerCase().replace(/\s/g,'');
-  if(n==='warrior'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y-9);ctx.lineTo(x,y+8);ctx.stroke();ctx.beginPath();ctx.moveTo(x-6,y-1);ctx.lineTo(x+6,y-1);ctx.strokeStyle='#d4c49a';ctx.stroke();ctx.beginPath();ctx.moveTo(x-2,y-9);ctx.lineTo(x+2,y-9);ctx.lineTo(x,y-12);ctx.closePath();ctx.fillStyle=col;ctx.fill();}
-  else if(n==='lumberjack'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x+4,y-8);ctx.lineTo(x-3,y+9);ctx.stroke();ctx.beginPath();ctx.moveTo(x+4,y-8);ctx.lineTo(x+10,y-3);ctx.lineTo(x+5,y+2);ctx.closePath();ctx.fillStyle='rgba(74,159,212,0.25)';ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.stroke();}
-  else if(n==='druid'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x,y+9);ctx.lineTo(x,y+1);ctx.stroke();ctx.beginPath();ctx.arc(x,y-4,6,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(x-4,y-1,3.5,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(x+4,y-1,3.5,0,Math.PI*2);ctx.stroke();}
-  else if(n==='wizard'){ctx.strokeStyle=col;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(x,y-5);ctx.lineTo(x-7,y-6);ctx.lineTo(x-7,y+7);ctx.lineTo(x,y+6);ctx.closePath();ctx.stroke();ctx.beginPath();ctx.moveTo(x,y-5);ctx.lineTo(x+7,y-6);ctx.lineTo(x+7,y+7);ctx.lineTo(x,y+6);ctx.closePath();ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=0.8;for(var i=0;i<3;i++){ctx.beginPath();ctx.moveTo(x-6,y-1+i*4);ctx.lineTo(x-1,y-1+i*4);ctx.stroke();ctx.beginPath();ctx.moveTo(x+1,y-1+i*4);ctx.lineTo(x+6,y-1+i*4);ctx.stroke();}ctx.beginPath();ctx.arc(x,y-9,3,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.stroke();}
-  else if(n==='battlemage'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y+10);ctx.lineTo(x,y-3);ctx.stroke();ctx.beginPath();ctx.moveTo(x,y-3);ctx.quadraticCurveTo(x+6,y-7,x+2,y-13);ctx.quadraticCurveTo(x,y-8,x,y-3);ctx.fillStyle='rgba(220,80,30,0.8)';ctx.fill();ctx.beginPath();ctx.moveTo(x,y-3);ctx.quadraticCurveTo(x-5,y-7,x-2,y-13);ctx.quadraticCurveTo(x,y-8,x,y-3);ctx.fillStyle='rgba(240,140,30,0.7)';ctx.fill();}
-  else if(n==='shieldmage'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x,y-10);ctx.lineTo(x+8,y-5);ctx.lineTo(x+8,y+4);ctx.lineTo(x,y+10);ctx.lineTo(x-8,y+4);ctx.lineTo(x-8,y-5);ctx.closePath();ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y-5);ctx.lineTo(x,y+5);ctx.stroke();ctx.beginPath();ctx.moveTo(x-5,y);ctx.lineTo(x+5,y);ctx.stroke();ctx.beginPath();ctx.moveTo(x-3,y-3);ctx.lineTo(x+3,y+3);ctx.stroke();ctx.beginPath();ctx.moveTo(x+3,y-3);ctx.lineTo(x-3,y+3);ctx.stroke();}
-  else if(n==='guardian'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y-10);ctx.lineTo(x+9,y-4);ctx.lineTo(x+8,y+4);ctx.lineTo(x,y+11);ctx.lineTo(x-8,y+4);ctx.lineTo(x-9,y-4);ctx.closePath();ctx.fillStyle='rgba(74,159,212,0.12)';ctx.fill();ctx.stroke();ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();}
-  else if(n==='smith'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x+4,y+8);ctx.lineTo(x-3,y-2);ctx.stroke();ctx.beginPath();ctx.rect(x-7,y-9,9,5);ctx.fillStyle='rgba(74,159,212,0.2)';ctx.fill();ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x-4,y+5);ctx.lineTo(x+8,y+5);ctx.lineTo(x+8,y+9);ctx.lineTo(x-4,y+9);ctx.closePath();ctx.stroke();}
-  else if(n==='knight'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(x,y-3,8,Math.PI,0);ctx.stroke();ctx.beginPath();ctx.moveTo(x-8,y-3);ctx.lineTo(x-8,y+6);ctx.lineTo(x+8,y+6);ctx.lineTo(x+8,y-3);ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x-5,y+1);ctx.lineTo(x+5,y+1);ctx.stroke();ctx.beginPath();ctx.moveTo(x-5,y+3);ctx.lineTo(x+5,y+3);ctx.stroke();}
-  else if(n==='priest'){ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(x,y-9);ctx.lineTo(x,y+9);ctx.stroke();ctx.beginPath();ctx.moveTo(x-6,y-2);ctx.lineTo(x+6,y-2);ctx.stroke();ctx.beginPath();ctx.arc(x,y-9,4,0,Math.PI*2);ctx.strokeStyle='#d4c49a';ctx.lineWidth=1;ctx.stroke();}
-  else if(n==='paladin'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x,y-10);ctx.lineTo(x+8,y-5);ctx.lineTo(x+7,y+4);ctx.lineTo(x,y+10);ctx.lineTo(x-7,y+4);ctx.lineTo(x-8,y-5);ctx.closePath();ctx.fillStyle='rgba(201,168,76,0.08)';ctx.fill();ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x,y-5);ctx.lineTo(x,y+5);ctx.stroke();ctx.beginPath();ctx.moveTo(x-4,y);ctx.lineTo(x+4,y);ctx.stroke();}
-  else if(n==='cleric'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y+10);ctx.lineTo(x,y-5);ctx.stroke();ctx.beginPath();ctx.arc(x,y-9,4,0,Math.PI*2);ctx.fillStyle='rgba(201,168,76,0.15)';ctx.fill();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.5;ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1;for(var i=0;i<6;i++){var a=(i/6)*Math.PI*2;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*5,y-9+Math.sin(a)*5);ctx.lineTo(x+Math.cos(a)*8,y-9+Math.sin(a)*8);ctx.stroke();}}
-  else if(n==='witch'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(x,y+3,7,0.1*Math.PI,0.9*Math.PI);ctx.stroke();ctx.beginPath();ctx.moveTo(x-7,y+3);ctx.lineTo(x+7,y+3);ctx.stroke();ctx.beginPath();ctx.moveTo(x-5,y+9);ctx.lineTo(x-6,y+11);ctx.stroke();ctx.beginPath();ctx.moveTo(x+5,y+9);ctx.lineTo(x+6,y+11);ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1;ctx.beginPath();ctx.arc(x-2,y-1,2,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(x+3,y-3,1.5,0,Math.PI*2);ctx.stroke();}
-  else if(n==='sorcerer'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(x,y+3,5,0,Math.PI*2);ctx.stroke();for(var i=-2;i<=2;i++){ctx.beginPath();ctx.moveTo(x+i*2,y-1);ctx.lineTo(x+i*2,y-6-Math.abs(i));ctx.stroke();}ctx.strokeStyle='#d4c49a';ctx.lineWidth=1;[[-8,-5],[8,-5],[0,-12],[-5,-10],[5,-10]].forEach(function(s){ctx.beginPath();ctx.moveTo(x+s[0],y+s[1]);ctx.lineTo(x+s[0]*1.4,y+s[1]*1.3);ctx.stroke();});}
-  else if(n==='taxcollector'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x-9,y-2);ctx.lineTo(x+9,y-2);ctx.stroke();ctx.beginPath();ctx.moveTo(x,y-2);ctx.lineTo(x,y+9);ctx.stroke();ctx.beginPath();ctx.moveTo(x-4,y+9);ctx.lineTo(x+4,y+9);ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(x-9,y+3,4,0,Math.PI);ctx.stroke();ctx.beginPath();ctx.moveTo(x-13,y+3);ctx.lineTo(x-5,y+3);ctx.stroke();ctx.beginPath();ctx.arc(x+9,y+3,4,0,Math.PI);ctx.stroke();ctx.beginPath();ctx.moveTo(x+5,y+3);ctx.lineTo(x+13,y+3);ctx.stroke();ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x-9,y-2);ctx.lineTo(x-13,y+3);ctx.stroke();ctx.beginPath();ctx.moveTo(x-9,y-2);ctx.lineTo(x-5,y+3);ctx.stroke();ctx.beginPath();ctx.moveTo(x+9,y-2);ctx.lineTo(x+5,y+3);ctx.stroke();ctx.beginPath();ctx.moveTo(x+9,y-2);ctx.lineTo(x+13,y+3);ctx.stroke();}
-  else if(n==='mercenary'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-8,y-8);ctx.lineTo(x+8,y+8);ctx.stroke();ctx.beginPath();ctx.moveTo(x+8,y-8);ctx.lineTo(x-8,y+8);ctx.stroke();ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle='rgba(201,168,76,0.2)';ctx.fill();ctx.strokeStyle=GC;ctx.lineWidth=1.5;ctx.stroke();}
-  else if(n==='brawler'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.roundRect(x-10,y-5,8,7,2);ctx.stroke();ctx.beginPath();ctx.moveTo(x-10,y-5);ctx.lineTo(x-10,y-8);ctx.lineTo(x-3,y-8);ctx.lineTo(x-3,y-5);ctx.stroke();ctx.beginPath();ctx.roundRect(x+2,y-5,8,7,2);ctx.stroke();ctx.beginPath();ctx.moveTo(x+2,y-5);ctx.lineTo(x+2,y-8);ctx.lineTo(x+9,y-8);ctx.lineTo(x+9,y-5);ctx.stroke();}
-  else if(n==='barbarian'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x+3,y-10);ctx.lineTo(x-3,y+9);ctx.stroke();ctx.beginPath();ctx.moveTo(x+3,y-10);ctx.lineTo(x+11,y-7);ctx.lineTo(x+8,y+0);ctx.lineTo(x+3,y+0);ctx.closePath();ctx.fillStyle='rgba(212,90,74,0.2)';ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x-3,y+9);ctx.lineTo(x-5,y+12);ctx.stroke();ctx.beginPath();ctx.moveTo(x-3,y+9);ctx.lineTo(x-1,y+13);ctx.stroke();ctx.beginPath();ctx.moveTo(x-3,y+9);ctx.lineTo(x+1,y+12);ctx.stroke();}
-  else if(n==='samurai'){ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x-9,y+8);ctx.lineTo(x+8,y-9);ctx.stroke();ctx.strokeStyle=col;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x-2,y+3);ctx.lineTo(x+2,y-1);ctx.stroke();ctx.beginPath();ctx.arc(x-9,y+9,2,0,Math.PI*2);ctx.fillStyle='#d4c49a';ctx.fill();}
-  else if(n==='artificer'){ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.stroke();for(var i=0;i<8;i++){var a=(i/8)*Math.PI*2;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*6,y+Math.sin(a)*6);ctx.lineTo(x+Math.cos(a)*10,y+Math.sin(a)*10);ctx.stroke();}}
-  else if(n==='ranger'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(x-2,y,9,-0.6*Math.PI,0.6*Math.PI);ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1;var bx1=x-2+9*Math.cos(-0.6*Math.PI),by1=y+9*Math.sin(-0.6*Math.PI),bx2=x-2+9*Math.cos(0.6*Math.PI),by2=y+9*Math.sin(0.6*Math.PI);ctx.beginPath();ctx.moveTo(bx1,by1);ctx.lineTo(bx2,by2);ctx.stroke();ctx.beginPath();ctx.moveTo(x-8,y);ctx.lineTo(x+9,y);ctx.stroke();ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x+9,y);ctx.lineTo(x+6,y-2);ctx.moveTo(x+9,y);ctx.lineTo(x+6,y+2);ctx.stroke();}
-  else if(n==='herbalist'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(x,y+3,7,0.05*Math.PI,0.95*Math.PI);ctx.stroke();ctx.beginPath();ctx.moveTo(x-7,y+3);ctx.lineTo(x+7,y+3);ctx.stroke();ctx.beginPath();ctx.moveTo(x-3,y+1);ctx.lineTo(x+5,y-8);ctx.stroke();ctx.beginPath();ctx.arc(x+5,y-8,2.5,0,Math.PI*2);ctx.stroke();}
-  else if(n==='barkeep'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x-6,y-7);ctx.lineTo(x-6,y+7);ctx.lineTo(x+5,y+7);ctx.lineTo(x+5,y-7);ctx.closePath();ctx.stroke();ctx.beginPath();ctx.moveTo(x+5,y-3);ctx.quadraticCurveTo(x+12,y-1,x+5,y+4);ctx.stroke();ctx.fillStyle='#d4c49a';ctx.beginPath();ctx.arc(x-3,y-9,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+1,y-9,2,0,Math.PI*2);ctx.fill();}
-  else if(n==='monk'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y-10);ctx.lineTo(x,y+10);ctx.stroke();ctx.beginPath();ctx.moveTo(x-6,y);ctx.lineTo(x+6,y);ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.5;ctx.stroke();ctx.beginPath();ctx.arc(x,y-10,3,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.stroke();}
-  else if(n==='bard'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x-5,y+8);ctx.lineTo(x+5,y+8);ctx.stroke();ctx.beginPath();ctx.moveTo(x-5,y+8);ctx.quadraticCurveTo(x-9,y,x-5,y-8);ctx.stroke();ctx.beginPath();ctx.moveTo(x+5,y+8);ctx.quadraticCurveTo(x+9,y,x+5,y-8);ctx.stroke();ctx.beginPath();ctx.moveTo(x-5,y-8);ctx.lineTo(x+5,y-8);ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=0.9;for(var i=-1;i<=1;i++){ctx.beginPath();ctx.moveTo(x+i*2,y-7);ctx.lineTo(x+i*2,y+7);ctx.stroke();}}
-  else if(n==='swashbuckler'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-9,y-9);ctx.lineTo(x+9,y+9);ctx.stroke();ctx.beginPath();ctx.moveTo(x+9,y-9);ctx.lineTo(x-9,y+9);ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(x-4,y-1);ctx.lineTo(x+4,y-1);ctx.stroke();ctx.beginPath();ctx.moveTo(x-1,y-4);ctx.lineTo(x-1,y+4);ctx.stroke();}
-  else if(n==='gunslinger'){ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(x-9,y-2);ctx.lineTo(x+6,y-2);ctx.stroke();ctx.beginPath();ctx.moveTo(x-1,y-2);ctx.lineTo(x-1,y+4);ctx.lineTo(x-5,y+9);ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x-1,y+2);ctx.quadraticCurveTo(x+4,y+5,x+3,y+9);ctx.stroke();ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x+3,y-2);ctx.lineTo(x+6,y-6);ctx.stroke();}
-  else if(n==='duelist'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-10,y+7);ctx.lineTo(x+9,y-9);ctx.stroke();ctx.beginPath();ctx.arc(x-2,y+2,4,0,Math.PI*2);ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.5;ctx.stroke();}
-  else if(n==='rogue'){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-2,y+9);ctx.lineTo(x+7,y-7);ctx.lineTo(x+5,y-9);ctx.lineTo(x-2,y+9);ctx.closePath();ctx.stroke();ctx.strokeStyle='#d4c49a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-4,y+3);ctx.lineTo(x+4,y-1);ctx.stroke();}
-  ctx.restore();
-}
-
-function getPosns(n,W,hPad,vPad,rowH){
-  var rc=n-2,tc=Math.ceil(rc/2),bc=rc-tc,pos=[],tY=vPad,bY=vPad+rowH*2,mY=vPad+rowH;
-  var sT=(W-hPad*2)/tc,sB=bc>0?(W-hPad*2)/bc:1;
-  for(var i=0;i<tc;i++) pos.push({x:hPad+sT*i+sT/2,y:tY});
-  pos.push({x:W-hPad-8,y:mY});
-  for(var i=0;i<bc;i++) pos.push({x:hPad+sB*(bc-1-i)+sB/2,y:bY});
-  pos.push({x:hPad+8,y:mY});
-  return pos;
-}
-
-function arrow(ctx,x1,y1,x2,y2,col){
-  var dx=x2-x1,dy=y2-y1,d=Math.sqrt(dx*dx+dy*dy);if(d<1)return;
-  var ux=dx/d,uy=dy/d,sx=x1+ux*(R+5),sy=y1+uy*(R+5),ex=x2-ux*(R+8),ey=y2-uy*(R+8);
-  ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.setLineDash([5,4]);ctx.stroke();ctx.setLineDash([]);
-  var a=Math.atan2(ey-sy,ex-sx),as=7;
-  ctx.beginPath();ctx.moveTo(ex,ey);ctx.lineTo(ex-as*Math.cos(a-0.4),ey-as*Math.sin(a-0.4));ctx.moveTo(ex,ey);ctx.lineTo(ex-as*Math.cos(a+0.4),ey-as*Math.sin(a+0.4));ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.lineCap='round';ctx.stroke();
-}
-
-function node(ctx,x,y,name,col){
-  ctx.beginPath();ctx.arc(x,y,R,0,Math.PI*2);ctx.fillStyle='#0d0d18';ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.stroke();
-  icon(ctx,name,x,y-4,col);
-  ctx.font='700 '+FS+'px Georgia,serif';ctx.fillStyle='#d4c49a';ctx.textAlign='center';ctx.textBaseline='top';
-  if(name==="Tax Collector"){
-    ctx.fillText("TAX",x,y+R+4);
-    ctx.fillText("COLLECTOR",x,y+R+17);
-  } else {
-    ctx.fillText(name.toUpperCase(),x,y+R+4);
-  }
-}
-
-function renderLoop(id,classes,col,W){
-  var cv=document.getElementById(id),n=classes.length,hPad=30;
-  var rc=n-2,tc=Math.ceil(rc/2),bc=rc-tc;
-  var rowH=Math.max(Math.floor((W-hPad*2)/Math.max(tc,bc)*0.9),75);
-  var vPad=46,H=rowH*2+vPad*2+10;
-  cv.width=W;cv.height=H;
-  var ctx=cv.getContext('2d');ctx.clearRect(0,0,W,H);
-  var pos=getPosns(n,W,hPad,vPad,rowH);
-  for(var i=0;i<n;i++) arrow(ctx,pos[i].x,pos[i].y,pos[(i+1)%n].x,pos[(i+1)%n].y,col);
-  for(var i=0;i<n;i++) node(ctx,pos[i].x,pos[i].y,classes[i],col);
-}
-
-function peasant(){
-  var cv=document.getElementById('cP'),S=R*2+20;cv.width=S;cv.height=S+20;
-  var ctx=cv.getContext('2d'),cx=S/2,cy=S/2;
-  ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle='#1a1408';ctx.fill();ctx.strokeStyle=GC;ctx.lineWidth=2;ctx.stroke();
-  ctx.save();ctx.lineCap='round';ctx.strokeStyle=GC;ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(cx,cy+8);ctx.lineTo(cx,cy-7);ctx.stroke();
-  ctx.fillStyle=GC;[[0,-8],[-1,-6],[1,-6],[-3,-4],[3,-4],[-5,-3],[5,-3]].forEach(function(p){ctx.beginPath();ctx.arc(cx+p[0],cy+p[1],1.5,0,Math.PI*2);ctx.fill();});
-  ctx.beginPath();ctx.moveTo(cx-4,cy+5);ctx.lineTo(cx+4,cy+5);ctx.strokeStyle='#d4c49a';ctx.lineWidth=1.5;ctx.stroke();
-  ctx.restore();
-  ctx.font='700 '+FS+'px Georgia,serif';ctx.fillStyle=GC;ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText('PEASANT',cx,cy+R+5);
-}
-
-function render(){
-  var inner=document.querySelector('.infographic-inner');
-  var W=inner.offsetWidth-32;
-  renderLoop('cH',HEAVY,HC,W);
-  peasant();
-  renderLoop('cA',AGILE,AC,Math.max(W-220,200));
-  renderLoop('cB',BRUTAL,BC,390);
-}
-
-window.addEventListener('load',function(){setTimeout(render,150);});
-window.addEventListener('resize',function(){setTimeout(render,150);});
-</script>
 </body>
 </html>
